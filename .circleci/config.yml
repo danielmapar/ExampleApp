@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: danielmapar/gradle_and_node:1.0
+      - image: danielmapar/gradle_and_node:2.0
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images

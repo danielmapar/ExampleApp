@@ -1,11 +1,7 @@
 FROM ubuntu
-RUN apt-get update && apt-get install -y zip sudo wget apt-transport-https ca-certificates curl gnupg2 software-properties-common tar git openssl gzip unzip
+RUN apt-get update && apt-get install -y sudo wget apt-transport-https ca-certificates curl gnupg2 software-properties-common tar git openssl gzip unzip zip
 # Standard Encoding von ASCII auf UTF-8 stellen
 ENV LANG C.UTF-8
-
-RUN adduser --disabled-password --gecos '' docker
-RUN adduser docker sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 ## Install Node
 RUN curl -sL https://deb.nodesource.com/setup_10.x > install.sh && chmod +x install.sh && ./install.sh && \
@@ -30,5 +26,5 @@ RUN wget --output-document=gradle.zip  https://services.gradle.org/distributions
 RUN sudo apt-get update 
 
 WORKDIR /
-USER docker
+USER root
 CMD /bin/bash
