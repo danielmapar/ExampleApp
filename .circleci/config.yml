@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/openjdk:8-jdk # jimador/docker-jdk-8-maven-node
+      - image: jimador/docker-jdk-8-maven-node
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -42,7 +42,7 @@ jobs:
       - run: gradle test
 
       - run: 
-          name: "SCALP and AuthoringApp - Build and Publish Release on GitHub"
+          name: "Build and Publish Release on GitHub"
           command: |
             sudo apt install zip unzip
             npm install -g github-release-cli
