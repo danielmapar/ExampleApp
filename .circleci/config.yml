@@ -45,7 +45,7 @@ jobs:
           name: "Build and Publish Release on GitHub"
           command: |
             #apt install zip unzip
-            npm install -g github-release-cli
+            npm install github-release-cli
 
             NOW="$(date)" 
             ZIP_FILE_NAME=ExampleApp
@@ -54,7 +54,7 @@ jobs:
             gradle jar
             zip -r ${ZIP_FILE_NAME}.zip ./build/libs/*
 
-            github-release upload --token ${GITHUB_TOKEN} --owner ${PROJECT_USERNAME} --repo ${PROJECT_REPONAME} --tag ${TAG} --name ${TAG} --body "Release date: ${NOW}" ${ZIP_FILE_NAME}.zip
+            ./node_modules/bin/github-release upload --token ${GITHUB_TOKEN} --owner ${PROJECT_USERNAME} --repo ${PROJECT_REPONAME} --tag ${TAG} --name ${TAG} --body "Release date: ${NOW}" ${ZIP_FILE_NAME}.zip
 
 workflows:
   version: 2
