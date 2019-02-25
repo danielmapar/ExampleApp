@@ -49,7 +49,7 @@ jobs:
             TAG=Release-$(date '+%Y-%m-%d-%H-%M-%S')
 
             gradle jar
-            
+
             cd ./build/libs/
             zip ${ZIP_FILE_NAME}.zip ExampleApp.jar
 
@@ -62,4 +62,4 @@ workflows:
       - build:
           filters:
             branches:
-              only: master
+              only: master 
