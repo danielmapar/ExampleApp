@@ -44,9 +44,6 @@ jobs:
       - run: 
           name: "Build and Publish Release on GitHub"
           command: |
-            sudo yes | apt-get install zip
-            sudo npm install -g github-release-cli
-
             NOW="$(date)" 
             ZIP_FILE_NAME=ExampleApp
             TAG=Release-$(date '+%Y-%m-%d-%H-%M-%S')

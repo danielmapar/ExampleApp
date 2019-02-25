@@ -1,5 +1,5 @@
 FROM ubuntu
-RUN apt-get update && apt-get install -y sudo wget apt-transport-https ca-certificates curl gnupg2 software-properties-common tar git openssl gzip unzip
+RUN apt-get update && apt-get install -y zip sudo wget apt-transport-https ca-certificates curl gnupg2 software-properties-common tar git openssl gzip unzip
 # Standard Encoding von ASCII auf UTF-8 stellen
 ENV LANG C.UTF-8
 
@@ -13,6 +13,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x > install.sh && chmod +x inst
 
 # Neustes npm
 RUN npm install -g npm@latest
+RUN npm install -g github-release-cli
 
 ARG GRADLE_VERSION=4.10.3
 ARG JDK_VERSION=8
