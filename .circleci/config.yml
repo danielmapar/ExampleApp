@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: karlrun/java-node-gradle
+      - image: magnetichq/tomgres-gradle-node
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
