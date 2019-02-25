@@ -1,7 +1,9 @@
-FROM ubuntu:rolling AS BASE_IMAGE
-RUN apt-get update && apt-get install -y wget apt-transport-https ca-certificates curl gnupg2 software-properties-common tar git openssl gzip unzip
+FROM ubuntu
+RUN apt-get update && apt-get install -y sudo wget apt-transport-https ca-certificates curl gnupg2 software-properties-common tar git openssl gzip unzip
 # Standard Encoding von ASCII auf UTF-8 stellen
 ENV LANG C.UTF-8
+
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
 ## Install Node
 RUN curl -sL https://deb.nodesource.com/setup_10.x > install.sh && chmod +x install.sh && ./install.sh && \
@@ -10,7 +12,6 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x > install.sh && chmod +x inst
 # Neustes npm
 RUN npm install -g npm@latest
 
-FROM BASE_IMAGE
 ARG GRADLE_VERSION=4.10.3
 ARG JDK_VERSION=8
 ## Openjdk 
@@ -24,3 +25,5 @@ RUN wget --output-document=gradle.zip  https://services.gradle.org/distributions
     ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
 
 WORKDIR /
+USER docker
+CMD /bin/bash

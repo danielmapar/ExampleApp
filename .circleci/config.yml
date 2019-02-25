@@ -44,8 +44,8 @@ jobs:
       - run: 
           name: "Build and Publish Release on GitHub"
           command: |
-            yes | apt-get install zip
-            npm install -g github-release-cli
+            sudo yes | apt-get install zip
+            sudo npm install -g github-release-cli
 
             NOW="$(date)" 
             ZIP_FILE_NAME=ExampleApp
