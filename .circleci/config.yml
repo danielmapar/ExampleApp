@@ -42,19 +42,19 @@ jobs:
       - run: gradle test
 
       - run: 
-        name: "SCALP and AuthoringApp - Build and Publish Release on GitHub"
-        command: |
-          sudo apt install zip unzip
-          npm install -g github-release-cli
+          name: "SCALP and AuthoringApp - Build and Publish Release on GitHub"
+          command: |
+            sudo apt install zip unzip
+            npm install -g github-release-cli
 
-          NOW="$(date)" 
-          ZIP_FILE_NAME=ExampleApp
-          TAG=Release-$(date '+%Y-%m-%d-%H-%M-%S')
+            NOW="$(date)" 
+            ZIP_FILE_NAME=ExampleApp
+            TAG=Release-$(date '+%Y-%m-%d-%H-%M-%S')
 
-          gradle jar
-          zip -r ${ZIP_FILE_NAME}.zip ./build/libs/*
+            gradle jar
+            zip -r ${ZIP_FILE_NAME}.zip ./build/libs/*
 
-          github-release upload --token ${GITHUB_TOKEN} --owner ${PROJECT_USERNAME} --repo ${PROJECT_REPONAME} --tag ${TAG} --name ${TAG} --body "Release date: ${NOW}" ${ZIP_FILE_NAME}.zip
+            github-release upload --token ${GITHUB_TOKEN} --owner ${PROJECT_USERNAME} --repo ${PROJECT_REPONAME} --tag ${TAG} --name ${TAG} --body "Release date: ${NOW}" ${ZIP_FILE_NAME}.zip
 
 workflows:
   version: 2
